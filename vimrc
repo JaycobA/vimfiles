@@ -20,6 +20,8 @@ set nowritebackup
 set noswapfile
 syntax enable
 set autoread
+set autowrite
+set nofoldenable
 
 "  ---------------------------------------------------------------------------
 "  UI
@@ -42,20 +44,21 @@ set ruler
 set backspace=indent,eol,start
 set laststatus=2
 set number
-set norelativenumber
+set relativenumber
 set undofile
+set lazyredraw
 
 " Auto adjust window sizes when they become current
-set winwidth=84
-set winheight=5
-set winminheight=5
-set winheight=999
-
-set splitbelow splitright
-
-if has('mouse')
-  set mouse=a
-endif
+" set winwidth=84
+" set winheight=5
+" set winminheight=5
+" set winheight=999
+"
+" set splitbelow splitright
+"
+" if has('mouse')
+"   set mouse=a
+" endif
 
 "  ---------------------------------------------------------------------------
 "  Text Formatting
@@ -120,6 +123,7 @@ vnoremap // :TComment<CR>
 " Switch between buffers
 noremap <tab> :bn<CR>
 noremap <S-tab> :bp<CR>
+noremap <leader><tab> :b#<CR>
 " close buffer
 nmap <leader>d :Bclose<CR>
 " close all buffers
@@ -158,6 +162,12 @@ let g:AutoCloseProtectedRegions = ["Character"]
 
 " CtrlP
 nmap <leader>f :CtrlP<cr>
+let g:ctrlp_custom_ignore = {
+  \ 'dir': '\v[\/](publish/|tmp|public\/(assets|cached-assets|cms-assets))'
+  \ }
+let g:ctrlp_max_files = 100000
+let g:ctrlp_lazy_update = 1
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
 
 " Add settings for tabular
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
@@ -261,8 +271,15 @@ colorscheme solarized
 "  ---------------------------------------------------------------------------
 
 
-
 " When vimrc, either directly or via symlink, is edited, automatically reload it
 autocmd! bufwritepost .vimrc source %
 autocmd! bufwritepost vimrc source %
 
+" vim-rspec mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+
+" Explorer
+map <Leader>e :Explore<CR>
