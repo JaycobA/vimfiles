@@ -281,5 +281,8 @@ map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 
+" Premade Macros
+let @d='0f{xido^[a^M^[$xx^[oend^[:w^['
+
 " Explorer
 map <Leader>e :Explore<CR>
