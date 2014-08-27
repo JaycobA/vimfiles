@@ -163,7 +163,7 @@ let g:AutoCloseProtectedRegions = ["Character"]
 " CtrlP
 nmap <leader>f :CtrlP<cr>
 let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v[\/](publish/|tmp|public\/(assets|cached-assets|cms-assets))'
+  \ 'dir': '\v[\/](coverage/|publish/|tmp|public\/(assets|cached-assets|cms-assets))'
   \ }
 let g:ctrlp_max_files = 100000
 let g:ctrlp_lazy_update = 1
