@@ -162,9 +162,8 @@ let g:AutoCloseProtectedRegions = ["Character"]
 
 " CtrlP
 nmap <leader>f :CtrlP<cr>
-let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v[\/](coverage/|publish/|tmp|public\/(assets|cached-assets|cms-assets))'
-  \ }
+let g:ctrlp_user_command =
+      \ ['.git', 'cd %s && git ls-files . -co --exclude-standard']
 let g:ctrlp_max_files = 100000
 let g:ctrlp_lazy_update = 1
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
